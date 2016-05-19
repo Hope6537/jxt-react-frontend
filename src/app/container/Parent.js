@@ -28,7 +28,7 @@ const muiTheme = getMuiTheme({
     },
 });
 
-class Main extends React.Component {
+class Parent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -61,7 +61,7 @@ class Main extends React.Component {
                 <div style={styles.container}>
                     <AppHeaderBar style={styles.dataComponent}/>
                     {
-                        this.renderDataComponent()
+                        this.props.children
                     }
                     <AppFooter/>
                 </div>
@@ -70,4 +70,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+export default Parent;

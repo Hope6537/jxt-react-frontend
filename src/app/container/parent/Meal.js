@@ -9,7 +9,7 @@ import MealCard from '../../component/meal/MealCard'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Parent from '../Parent'
 
-class MealDataComponent extends React.Component {
+export default class MealDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -27,10 +27,3 @@ class MealDataComponent extends React.Component {
         )
     }
 }
-
-
-const Meal = () => (
-    <Parent dataComponent={<MealDataComponent/>}/>
-);
-
-export default Meal

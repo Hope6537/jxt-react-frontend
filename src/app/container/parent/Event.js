@@ -9,7 +9,7 @@ import EventCardDetail from '../../component/event/EventCardDetail'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import Parent from '../Parent'
 
-class EventDataComponent extends React.Component {
+export default class EventDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -39,9 +39,3 @@ class EventDataComponent extends React.Component {
         )
     }
 }
-
-const Event = () => (
-    <Parent dataComponent={<EventDataComponent/>}/>
-);
-
-export default Event;

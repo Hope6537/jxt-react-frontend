@@ -10,6 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 import Parent from '../Parent'
@@ -24,9 +25,9 @@ const styles = {
         marginTop: "20px",
         marginBottom: "20px"
     }
-}
+};
 
-class RequireDataComponent extends React.Component {
+export default class RequireDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -115,25 +116,25 @@ class RequireDataComponent extends React.Component {
                         <TableBody displayRowCheckbox={this.state.showCheckboxes}>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn>点击弹出Dialog</TableRowColumn>
+                                <TableRowColumn><RaisedButton linkButton={true} label="点击查看详情" href="/#/require/info/123" primary={true}/></TableRowColumn>
                                 <TableRowColumn>刘老师</TableRowColumn>
                                 <TableRowColumn>接受</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn>点击弹出Dialog</TableRowColumn>
+                                <TableRowColumn><RaisedButton linkButton={true} label="点击查看详情" href="/#/require/info/123" primary={true}/></TableRowColumn>
                                 <TableRowColumn>刘老师</TableRowColumn>
                                 <TableRowColumn>接受</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn>点击弹出Dialog</TableRowColumn>
+                                <TableRowColumn><RaisedButton linkButton={true} label="点击查看详情" href="/#/require/info/123" primary={true}/></TableRowColumn>
                                 <TableRowColumn>刘老师</TableRowColumn>
                                 <TableRowColumn>接受</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn>点击弹出Dialog</TableRowColumn>
+                                <TableRowColumn><RaisedButton linkButton={true} label="点击查看详情" href="/#/require/info/123" primary={true}/></TableRowColumn>
                                 <TableRowColumn>刘老师</TableRowColumn>
                                 <TableRowColumn>接受</TableRowColumn>
                             </TableRow>
@@ -145,9 +146,3 @@ class RequireDataComponent extends React.Component {
         )
     }
 }
-
-const Require = () => (
-    <Parent dataComponent={<RequireDataComponent/>}/>
-);
-
-export default Require;

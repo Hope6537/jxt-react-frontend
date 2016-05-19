@@ -8,7 +8,7 @@ import Parent from '../Parent'
 import NoticeCard from '../../component/notice/NoticeCard'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
-class NoticeDataComponent extends React.Component {
+export default class NoticeDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -34,9 +34,3 @@ class NoticeDataComponent extends React.Component {
         )
     }
 }
-
-const Notice = () => (
-    <Parent dataComponent={<NoticeDataComponent/>}/>
-);
-
-export default Notice;

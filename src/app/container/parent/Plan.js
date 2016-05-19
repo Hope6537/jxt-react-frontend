@@ -8,7 +8,7 @@ import PlanCard from '../../component/plan/PlanCard'
 import Parent from '../Parent'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
-class PlanDataComponent extends React.Component {
+export default class PlanDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -34,9 +34,3 @@ class PlanDataComponent extends React.Component {
         )
     }
 }
-
-const Plan = () => (
-    <Parent dataComponent={<PlanDataComponent/>}/>
-);
-
-export default Plan;

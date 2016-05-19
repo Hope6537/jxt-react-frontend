@@ -25,7 +25,7 @@ const styles = {
     }
 }
 
-class FeedbackDataComponent extends React.Component {
+export default class FeedbackDataComponent extends React.Component {
 
     constructor() {
         super();
@@ -109,9 +109,3 @@ class FeedbackDataComponent extends React.Component {
         )
     }
 }
-
-const Feedback = () => (
-    <Parent dataComponent={<FeedbackDataComponent/>}/>
-);
-
-export default Feedback;

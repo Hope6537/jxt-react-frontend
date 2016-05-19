@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
+import RaisedButton from 'material-ui/RaisedButton';
 const cardDetailStyle = {
-    width: "300px",
+    width: "320px",
     height: "500px",
     marginTop: "20px",
     marginBottom: "20px",
@@ -40,6 +40,8 @@ export default class EventCardDetail extends React.Component {
                         {eventDes}
                     </CardText>
                     <CardActions>
+                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情" href="/#/event/info/123"
+                                      primary={true}/>
                         <FlatButton label="同意参加"/>
                         <FlatButton label="拒绝参加"/>
                     </CardActions>
@@ -55,6 +57,10 @@ export default class EventCardDetail extends React.Component {
                     <CardText style={{height:"250px"}}>
                         {eventDes}
                     </CardText>
+                    <CardActions>
+                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情" href="/#/event/info/123"
+                                      primary={true}/>
+                    </CardActions>
                 </Card>
             )
         }
