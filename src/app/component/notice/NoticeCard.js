@@ -17,12 +17,15 @@ const cardDetailStyle = {
  * 通知信息列
  * Created by hope6537 on 16/5/18.
  */
-export default class MealCard extends React.Component {
+export default class NoticeCard extends React.Component {
 
 
-    renderCardHeader(date) {
+    renderCardHeader(date, classes) {
+        if (classes == "all") {
+            classes = "全校通知";
+        }
         return <CardHeader
-            title="通知的标题"
+            title={classes+":通知的标题"}
             subtitle={date}
             actAsExpander={true}
             showExpandableButton={true}
@@ -45,18 +48,19 @@ export default class MealCard extends React.Component {
     render() {
 
         var date = this.props.date;
+        var classes = this.props.classes == undefined ? "all" : this.props.classes;
         var isFirst = this.props.isFirst == undefined ? false : this.props.isFirst;
         if (isFirst) {
             return (
                 <Card expanded={true}>
-                    {this.renderCardHeader(date)}
+                    {this.renderCardHeader(date, classes)}
                     {this.renderCardText()}
                 </Card>
             )
         } else {
             return (
                 <Card>
-                    {this.renderCardHeader(date)}
+                    {this.renderCardHeader(date, classes)}
                     {this.renderCardText()}
                 </Card>
             )

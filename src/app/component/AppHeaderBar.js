@@ -58,10 +58,22 @@ export default class AppHeaderBar extends React.Component {
         super(props);
         this.state = {
             open: false,
-            type: "parent"
         };
         this.handleToggle = this.handleToggle.bind(this);
         this.handleClose = this.handleClose.bind(this);
+    }
+
+    componentWillMount() {
+        console.log("type:" + this.props.type);
+        if (this.props.type != null && this.props.type != undefined) {
+            this.setState({
+                type: this.props.type
+            })
+        } else {
+            this.setState({
+                type: "parent"
+            })
+        }
     }
 
     handleToggle() {
@@ -73,8 +85,7 @@ export default class AppHeaderBar extends React.Component {
     }
 
     renderDrawer() {
-
-        if (this.state.type = "parent") {
+        if (this.state.type == "parent") {
             return (<div>
                 <IconButton onTouchTap={this.handleToggle.bind(this)}>
                     <NavigationApp style={{backgroundColor:"#FFFFFF"}}/>
@@ -97,7 +108,7 @@ export default class AppHeaderBar extends React.Component {
                 </Drawer>
             </div>)
         }
-        if (this.state.type = "teacher") {
+        if (this.state.type == "teacher") {
             return (<div>
                 <IconButton onTouchTap={this.handleToggle.bind(this)}>
                     <NavigationApp/>
@@ -111,16 +122,16 @@ export default class AppHeaderBar extends React.Component {
                     <AppBar
                         title="家校通-教师端"
                     />
-                    <MenuItem onTouchTap={this.handleClose}>食谱管理</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose}>作息管理</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose}>活动管理</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose}>通知管理</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose}>需求受理</MenuItem>
-                    <MenuItem onTouchTap={this.handleClose}>班级管理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/meal">食谱管理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/plan">作息管理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/event">活动管理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/notice">通知管理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/require">需求受理</MenuItem>
+                    <MenuItem onTouchTap={this.handleClose} href="/#/teacher/classes">班级管理</MenuItem>
                 </Drawer>
             </div>)
         }
-        if (this.state.type = "teacher") {
+        if (this.state.type == "admin") {
             return (<div>
                 <IconButton onTouchTap={this.handleToggle.bind(this)}>
                     <NavigationApp/>

@@ -54,8 +54,8 @@ export default class InfoDataComponent extends React.Component {
                     {this.renderCardHeader("需求详情", date)}
                     {this.renderCardText()}
                     <CardActions>
-                        <Link label="修改需求"/>
-                        <Link label="完成需求"/>
+                        <FlatButton label="修改需求"/>
+                        <FlatButton label="完成需求"/>
                     </CardActions>
                 </Card>
             )

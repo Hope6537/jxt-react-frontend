@@ -28,7 +28,7 @@ const muiTheme = getMuiTheme({
     },
 });
 
-class Parent extends React.Component {
+class Teacher extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.handleRequestClose = this.handleRequestClose.bind(this);
@@ -55,7 +55,7 @@ class Parent extends React.Component {
         return (
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div style={styles.container}>
-                    <AppHeaderBar style={styles.dataComponent}/>
+                    <AppHeaderBar type="teacher" style={styles.dataComponent}/>
                     {
                         this.props.children
                     }
@@ -66,4 +66,4 @@ class Parent extends React.Component {
     }
 }
 
-export default Parent;
+export default Teacher;

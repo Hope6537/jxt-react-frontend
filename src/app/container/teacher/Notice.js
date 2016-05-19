@@ -1,11 +1,11 @@
 /**
- * 通知组件
- * Created by hope6537 on 16/5/18.
+ * Created by hope6537 on 16/5/19.
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Parent from '../Parent'
 import NoticeCard from '../../component/notice/NoticeCard'
+import NoticeCardEditor from '../../component/notice/NoticeCardEditor'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 export default class NoticeDataComponent extends React.Component {
@@ -21,6 +21,8 @@ export default class NoticeDataComponent extends React.Component {
     render() {
         return (
             <div>
+                <NoticeCardEditor/>
+                <br/>
                 <NoticeCard date="2016年05月18日" classes={"all"} isFirst={true}/>
                 <NoticeCard date="2016年05月17日" classes={"A班"}/>
                 <NoticeCard date="2016年05月16日" classes={"A班"}/>
