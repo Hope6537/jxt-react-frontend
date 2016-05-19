@@ -16,7 +16,6 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import Parent from '../Parent'
 import NoticeCard from '../../component/notice/NoticeCard'
 
-
 const styles = {
     container: {
         marginLeft: "20px"
@@ -24,6 +23,9 @@ const styles = {
     button: {
         marginTop: "20px",
         marginBottom: "20px"
+    },
+    leftButton: {
+        textAlign: "left"
     }
 };
 
@@ -92,14 +94,14 @@ export default class RequireDataComponent extends React.Component {
         const refuseActions = [
             <FlatButton
                 label="提交"
-                primary={true}
+
                 onTouchTap={this.handleRefuseClose}
             />,
         ];
 
         const detailActions = [
             <RaisedButton style={{marginRight:"10px"}} label="接受" onTouchTap={this.handleDetailClose}
-                          primary={true}/>,
+            />,
             <RaisedButton label="拒绝"
                           onTouchTap={this.handleRefuseOpen}
                           secondary={true}/>
@@ -143,31 +145,34 @@ export default class RequireDataComponent extends React.Component {
                         <TableBody displayRowCheckbox={this.state.showCheckboxes}>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><RaisedButton label="查看详情"
-                                                              onTouchTap={this.handleDetailOpen}
-                                                              primary={true}/></TableRowColumn>
+                                <TableRowColumn><FlatButton style={styles.leftButton} label="详情"
+                                                            onTouchTap={this.handleDetailOpen}
+                                /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><RaisedButton
-                                    label="查看详情" onTouchTap={this.handleDetailOpen}
-                                    primary={true}/></TableRowColumn>
+                                <TableRowColumn><FlatButton style={styles.leftButton}
+                                                            label="详情" onTouchTap={this.handleDetailOpen}
+                                /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><RaisedButton label="查看详情" onTouchTap={this.handleDetailOpen}
-                                                              primary={true}/></TableRowColumn>
+                                <TableRowColumn><FlatButton style={styles.leftButton} label="详情"
+                                                            onTouchTap={this.handleDetailOpen}
+                                /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><RaisedButton label="查看详情" onTouchTap={this.handleDetailOpen}
-                                                              primary={true}/></TableRowColumn>
+                                <TableRowColumn><FlatButton label="详情"
+                                                            style={styles.leftButton}
+                                                            onTouchTap={this.handleDetailOpen}
+                                /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>
                             </TableRow>
