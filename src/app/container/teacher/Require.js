@@ -46,6 +46,8 @@ export default class RequireDataComponent extends React.Component {
             refuseOpen: false,
             detailOpen: false,
             selectable: false,
+            showRowHover: true,
+            stripedRows: true,
             showCheckboxes: false,
             requireType: null,
             targetTeacherId: null,
@@ -136,13 +138,16 @@ export default class RequireDataComponent extends React.Component {
                             adjustForCheckbox={this.state.showCheckboxes}
                         >
                             <TableRow>
-                                <TableHeaderColumn>需求标题</TableHeaderColumn>
+                                <TableHeaderColumn tooltip="特别长的标题题题题题题题题题题题题题">需求标题</TableHeaderColumn>
                                 <TableHeaderColumn>需求内容</TableHeaderColumn>
                                 <TableHeaderColumn>发起家长</TableHeaderColumn>
                                 <TableHeaderColumn>状态</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
-                        <TableBody displayRowCheckbox={this.state.showCheckboxes}>
+                        <TableBody
+                            showRowHover={this.state.showRowHover}
+                            stripedRows={this.state.stripedRows}
+                            displayRowCheckbox={this.state.showCheckboxes}>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
                                 <TableRowColumn><FlatButton style={styles.leftButton} label="详情"
