@@ -11,8 +11,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AppHeaderBar from '../component/AppHeaderBar'
 import AppFooter from '../component/AppFooter'
-import CardExampleWithoutAvatar from '../component/CardExampleWithoutAvatar'
-import CardExampleControlled from '../component/CardExampleControlled'
 
 
 const styles = {
