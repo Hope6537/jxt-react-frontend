@@ -4,7 +4,7 @@
   "description": "jxt-react-frontend",
   "repository": {
     "type": "git",
-    "url": "https://github.com/callemall/material-ui.git"
+    "url": "https://github.com/Hope6537/jxt-react-frontend"
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
