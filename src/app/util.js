@@ -1,5 +1,5 @@
 var CryptoJS = require("crypto-js");
-
+var Dimensions = require('react-dimensions');
 //example
 
 /* var param = {

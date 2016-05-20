@@ -27,13 +27,14 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "crypto-js": "3.1.2",
     "material-ui": "^0.15.0",
     "react": "^15.0.1",
+    "react-dimensions": "^1.1.1",
     "react-dom": "^15.0.1",
     "react-motion": "^0.4.3",
     "react-router": "^2.4.0",
     "react-swipeable-views": "^0.6.2",
-    "react-tap-event-plugin": "^1.0.0",
-    "crypto-js": "3.1.2"
+    "react-tap-event-plugin": "^1.0.0"
   }
 }
