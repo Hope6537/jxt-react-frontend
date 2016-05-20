@@ -4,7 +4,16 @@
 var Service = {
     host: 'http://localhost:8080',
     getEvent: '/event/get',
+
+    fetchEvent: '/event/fetch',
+    fetchFullEvent: "/event/fetch/full",
     postEvent: '/event/post',
+    putEvent: '/event/put',
+    fetchEventClassesId: '/publish/fetch/classesIdList',
+
+    fetchPublish: '/publish/fetch',
+    postPublish: '/publish/put',
+    batchPostPublish: '/publish/batchPost',
 
     fetchMeal: '/meal/fetch',
     postMeal: '/meal/post',

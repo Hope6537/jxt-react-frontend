@@ -26,22 +26,28 @@ export default class EventCardDetail extends React.Component {
     render() {
 
         var cardType = this.props.type == undefined ? "parent" : this.props.type;
+        var eventId = this.props.event.id;
         var eventTitle = this.props.event.title;
         var eventDes = this.props.event.des;
+        var eventClassesInfoList = this.props.event.relationClasses.map(classes => {
+            return classes.name;
+        });
+        console.log(eventClassesInfoList);
+
         var eventStatus = this.props.event.status;
 
-        if (eventStatus == "0") {
+        if (cardType != "teacher") {
             return (
                 <Card style={cardDetailStyle}>
                     <CardHeader
-                        title={eventTitle}
+                        title={"活动"}
                     />
-                    <CardTitle title="Card title" subtitle="Card subtitle"/>
+                    <CardTitle title={eventTitle} subtitle={"活动班级:"+JSON.stringify(eventClassesInfoList)}/>
                     <CardText style={{height:"250px"}}>
                         {eventDes}
                     </CardText>
                     <CardActions>
-                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情" href="/#/event/info/123"
+                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情" href={"/#/event/info/"+eventId}
                                       primary={true}/>
                         <FlatButton label="同意"/>
                         <FlatButton label="拒绝"/>
@@ -53,15 +59,15 @@ export default class EventCardDetail extends React.Component {
             return (
                 <Card style={cardDetailStyle}>
                     <CardHeader
-                        title={eventTitle}
+                        title={"活动"}
                     />
-                    <CardTitle title="Card title" subtitle="Card subtitle"/>
+                    <CardTitle title={eventTitle} subtitle={"活动班级:\n"+JSON.stringify(eventClassesInfoList)}/>
                     <CardText style={{height:"250px"}}>
                         {eventDes}
                     </CardText>
                     <CardActions>
                         <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label={buttonLabel}
-                                      href="/#/teacher/event/edit/123"
+                                      href={"/#/teacher/event/edit/"+eventId}
                                       primary={true}/>
                     </CardActions>
                 </Card>
