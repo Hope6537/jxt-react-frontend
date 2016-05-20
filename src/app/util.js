@@ -15,6 +15,17 @@ var Dimensions = require('react-dimensions');
  }, 'debug')*/
 
 var Util = {
+    style: {
+        container: {
+            position: 'relative',
+            paddingBottom: "1000px",
+            textAlign: "center",
+        },
+        refresh: {
+            display: 'inline-block',
+            position: 'relative',
+        },
+    },
     //屏幕尺寸
     AES_KEY: "xComicHentai6537",
     AES_IV: "4798145623545678",

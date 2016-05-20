@@ -389,13 +389,13 @@ export default class PlanDataComponent extends React.Component {
             )
         } else {
             return (
-                <div style={style.container} ref="loading">
+                <div style={Util.style.container} ref="loading">
                     <RefreshIndicator
                         size={100}
                         left={0}
                         top={20}
                         status="loading"
-                        style={style.refresh}
+                        style={Util.style.refresh}
                     />
                 </div>
             )
