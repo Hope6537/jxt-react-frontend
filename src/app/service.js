@@ -8,7 +8,13 @@ var Service = {
 
     fetchMeal: '/meal/fetch',
     postMeal: '/meal/post',
-    putMeal: '/meal/put'
+    putMeal: '/meal/put',
+
+    fetchPlan: '/plan/fetch',
+    postPlan: "/plan/post",
+    putPlan: "/plan/put",
+
+    fetchClasses: "/classes/fetch"
 };
 
 module.exports = Service;
