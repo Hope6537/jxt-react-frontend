@@ -10,6 +10,8 @@ import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import Util from '../../util'
+import Service from '../../service'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
@@ -22,7 +24,47 @@ export default class EventEdit extends React.Component {
         super();
     }
 
+    componentWillMount() {
+        this.setState({
+            classesList: undefined,
+        })
+    }
+
+    componentDidMount() {
+        this.fetchClassesList();
+    }
+
+
+    fetchClassesList() {
+        var query = {
+            plan: {
+                day: Util.getNowDate()
+            }
+        };
+        Util.getJSON(Service.host + Service.fetchClasses, query, undefined, function (resp) {
+            if (resp.success) {
+                var classesList = resp.data.result;
+                this.setState({
+                    classesList: classesList
+                })
+            }
+        }.bind(this))
+    }
+
     render() {
+
+        var classesList = this.state.classesList;
+        var classesNameValuePair = {};
+        let rows = null;
+        if (classesList != undefined) {
+            rows = classesList.map(classes => {
+                classesNameValuePair[classes.id] = classes.name;
+                return (<TableRow>
+                    <TableRowColumn>{classes.name}</TableRowColumn>
+                </TableRow>)
+            });
+        }
+
         return (
             <Card>
                 <CardTitle title={"发布活动"}/>
@@ -48,18 +90,7 @@ export default class EventEdit extends React.Component {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            <TableRow>
-                                <TableRowColumn>A班</TableRowColumn>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowColumn>B班</TableRowColumn>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowColumn>C班</TableRowColumn>
-                            </TableRow>
-                            <TableRow>
-                                <TableRowColumn>D班</TableRowColumn>
-                            </TableRow>
+                            {rows}
                         </TableBody>
                     </Table>
                     <RaisedButton label={"发布活动"} primary={true}/>

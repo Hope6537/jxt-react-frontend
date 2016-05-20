@@ -116,6 +116,8 @@ export default class MealCardEditor extends React.Component {
     }
 
     handleSubmit() {
+        var fetchMethod = this.props.fetchMethod
+        var callObj = this.props.callObj;
         var meal = this.handleData();
         var query = {
             meal: {
@@ -134,7 +136,9 @@ export default class MealCardEditor extends React.Component {
                         that.setState({
                             dialogMsg: decodeURIComponent(resp.returnMsg)
                         });
-                        that.handleOpen()
+                        that.handleOpen();
+                        //黑科技调用方法
+                        fetchMethod.call(callObj);
                     }, 'debug')
                 }
                 //进行修改
@@ -147,6 +151,8 @@ export default class MealCardEditor extends React.Component {
                             dialogMsg: decodeURIComponent(resp.returnMsg)
                         });
                         that.handleOpen();
+                        //黑科技调用方法
+                        fetchMethod.call(callObj);
                     }, 'debug')
                 }
             } else {

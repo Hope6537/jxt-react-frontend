@@ -9,9 +9,10 @@ import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import Util from '../../util'
 import Service from '../../service'
-import RefreshIndicator from 'material-ui/RefreshIndicator';
+
 
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
@@ -20,7 +21,8 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 const style = {
     container: {
         position: 'relative',
-        paddingBottom: "1000px"
+        paddingBottom: "1000px",
+        textAlign: "center",
     },
     refresh: {
         display: 'inline-block',
@@ -46,14 +48,6 @@ export default class PlanDataComponent extends React.Component {
     }
 
     componentDidMount() {
-        var width = 500;
-        var container = ReactDOM.findDOMNode(this.refs.loading);
-        if (container != null) {
-            width = container.offsetWidth;
-        }
-        this.setState({
-            width: width
-        });
         this.fetchClassesList();
         this.fetchPlanList();
     }
@@ -125,7 +119,7 @@ export default class PlanDataComponent extends React.Component {
                 <div style={style.container} ref="loading">
                     <RefreshIndicator
                         size={100}
-                        left={(this.state.width/2) - 50}
+                        left={0}
                         top={20}
                         status="loading"
                         style={style.refresh}
