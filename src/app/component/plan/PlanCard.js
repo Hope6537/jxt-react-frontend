@@ -15,18 +15,18 @@ const cardTextStyle = {
  */
 export default class PlanCard extends React.Component {
 
-    renderCardHeader(date) {
+    renderCardHeader(className, date) {
         return <CardHeader
-            title="作息时间"
+            title={className+" 作息时间"}
             subtitle={date}
             actAsExpander={true}
             showExpandableButton={true}
         />
     }
 
-    renderCardText() {
+    renderCardText(planData) {
         return <CardText expandable={true}>
-            <PlanCardDetail/>
+            <PlanCardDetail data={planData}/>
         </CardText>
     }
 
@@ -35,20 +35,22 @@ export default class PlanCard extends React.Component {
      * @returns {XML}
      */
     render() {
+        var classesName = this.props.className;
         var date = this.props.date;
+        var planData = this.props.data;
         var isFirst = this.props.isFirst == undefined ? false : this.props.isFirst;
         if (isFirst) {
             return (
                 <Card expanded={true}>
-                    {this.renderCardHeader(date)}
-                    {this.renderCardText()}
+                    {this.renderCardHeader(classesName, date)}
+                    {this.renderCardText(planData)}
                 </Card>
             )
         } else {
             return (
                 <Card>
-                    {this.renderCardHeader(date)}
-                    {this.renderCardText()}
+                    {this.renderCardHeader(classesName, date)}
+                    {this.renderCardText(planData)}
                 </Card>
             )
         }

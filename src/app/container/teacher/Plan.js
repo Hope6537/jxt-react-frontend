@@ -32,6 +32,14 @@ export default class PlanDataComponent extends React.Component {
 
     handleChangePlanClass(event, index, value) {
         this.setState({planClassesId: value});
+        if (this.state.planList != undefined) {
+            this.state.planList.map(plan => {
+                if (plan.day == Util.getNowDate() && plan.classesId == value) {
+                    var planData = JSON.parse(plan.data);
+                    this.setState(planData)
+                }
+            })
+        }
     }
 
     componentWillMount() {
@@ -39,6 +47,7 @@ export default class PlanDataComponent extends React.Component {
             selectable: false,
             showCheckboxes: false,
             planClassesId: null,
+            planList: undefined,
             classesList: undefined,
             dialogMsg: "",
             open: false,
@@ -55,6 +64,29 @@ export default class PlanDataComponent extends React.Component {
 
     componentDidMount() {
         this.fetchClassesList();
+        this.fetchPlanList();
+    }
+
+
+    fetchPlanList() {
+        var query = {
+            plan: {
+                isDeleted: "0"
+            }
+        };
+        Util.getJSON(Service.host + Service.fetchPlan, query, undefined, function (resp) {
+            if (resp.success) {
+                var planList = resp.data.result;
+                this.setState({
+                    planList: planList
+                })
+            } else {
+                this.setState({
+                    dialogMsg: decodeURIComponent(resp.returnMsg)
+                });
+                this.handleOpen()
+            }
+        }.bind(this))
     }
 
     fetchClassesList() {
@@ -163,6 +195,7 @@ export default class PlanDataComponent extends React.Component {
                             that.setState({
                                 dialogMsg: decodeURIComponent(resp.returnMsg)
                             });
+                            that.fetchPlanList();
                             that.handleOpen()
                         }, 'debug')
                     }
@@ -175,6 +208,7 @@ export default class PlanDataComponent extends React.Component {
                             that.setState({
                                 dialogMsg: decodeURIComponent(resp.returnMsg)
                             });
+                            that.fetchPlanList();
                             that.handleOpen();
                         }, 'debug')
                     }
@@ -203,10 +237,24 @@ export default class PlanDataComponent extends React.Component {
             />,
         ];
         var classesList = this.state.classesList;
+        var classesNameValuePair = {};
         let rows = null;
         if (classesList != undefined) {
             rows = classesList.map(classes => {
+                classesNameValuePair[classes.id] = classes.name;
                 return <MenuItem key={classes.id} value={classes.id} primaryText={classes.name}/>
+            });
+        }
+
+        var planList = this.state.planList;
+        let planRow = null;
+        var index = 0;
+        if (planList != undefined && classesList != undefined) {
+            planRow = planList.map(plan => {
+                index++;
+                return <PlanCard className={classesNameValuePair[plan.classesId]} date={plan.day} data={plan}
+                                 key={plan.id}
+                                 isFirst={index==1}/>
             });
         }
         return (
@@ -318,14 +366,7 @@ export default class PlanDataComponent extends React.Component {
                     </CardActions>
                 </Card>
                 <br/>
-                <PlanCard date="2016年05月18日" isFirst={true}/>
-                <PlanCard date="2016年05月17日"/>
-                <PlanCard date="2016年05月16日"/>
-                <PlanCard date="2016年05月15日"/>
-                <PlanCard date="2016年05月14日"/>
-                <PlanCard date="2016年05月13日"/>
-                <PlanCard date="2016年05月12日"/>
-                <PlanCard date="2016年05月11日"/>
+                {planRow}
             </div>
 
         )

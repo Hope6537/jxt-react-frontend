@@ -25,11 +25,43 @@ export default class PlanCardDetail extends React.Component {
         })
     }
 
+
+    renderTableBody() {
+        var planData = JSON.parse(this.props.data.data);
+        if (planData != undefined) {
+            return (<TableBody displayRowCheckbox={this.state.showCheckboxes}>
+                <TableRow>
+                    <TableRowColumn>08:00-08:45</TableRowColumn>
+                    <TableRowColumn>{planData.at}</TableRowColumn>
+                    <TableRowColumn>{planData.ar}</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                    <TableRowColumn>08:55-09:30</TableRowColumn>
+                    <TableRowColumn>{planData.bt}</TableRowColumn>
+                    <TableRowColumn>{planData.br}</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                    <TableRowColumn>09:50-10:35</TableRowColumn>
+                    <TableRowColumn>{planData.ct}</TableRowColumn>
+                    <TableRowColumn>{planData.cr}</TableRowColumn>
+                </TableRow>
+                <TableRow>
+                    <TableRowColumn>10:35-11:20</TableRowColumn>
+                    <TableRowColumn>{planData.dt}</TableRowColumn>
+                    <TableRowColumn>{planData.dr}</TableRowColumn>
+                </TableRow>
+            </TableBody>)
+        }
+
+    }
+
     /**
      * 渲染一个表格出来
      * @returns {XML}
      */
     render() {
+
+
         return (
             <Table
                 selectable={this.state.selectable}>
@@ -43,28 +75,7 @@ export default class PlanCardDetail extends React.Component {
                         <TableHeaderColumn>备注</TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
-                <TableBody displayRowCheckbox={this.state.showCheckboxes}>
-                    <TableRow>
-                        <TableRowColumn>08:00-08:45</TableRowColumn>
-                        <TableRowColumn>John Smith</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>08:55-09:30</TableRowColumn>
-                        <TableRowColumn>Randal White</TableRowColumn>
-                        <TableRowColumn>Unemployed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>09:50-10:35</TableRowColumn>
-                        <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                    <TableRow>
-                        <TableRowColumn>10:35-11:20</TableRowColumn>
-                        <TableRowColumn>Steve Brown</TableRowColumn>
-                        <TableRowColumn>Employed</TableRowColumn>
-                    </TableRow>
-                </TableBody>
+                {this.renderTableBody()}
             </Table>
         )
     }
