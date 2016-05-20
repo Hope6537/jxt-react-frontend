@@ -22,10 +22,11 @@ export default class MealCard extends React.Component {
     }
 
     renderCardText() {
+        var meal = this.props.data;
         return (<CardText expandable={true}>
-            <MealCardDetail type="早餐"/>
-            <MealCardDetail type="午餐"/>
-            <MealCardDetail type="晚餐"/>
+            <MealCardDetail data={meal.breakfast} type="早餐"/>
+            <MealCardDetail data={meal.lunch} type="午餐"/>
+            <MealCardDetail data={meal.dinner} type="晚餐"/>
         </CardText>);
     }
 

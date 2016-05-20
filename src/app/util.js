@@ -18,6 +18,10 @@ var Util = {
     //屏幕尺寸
     AES_KEY: "xComicHentai6537",
     AES_IV: "4798145623545678",
+    getNowDate: function () {
+        var myDate = new Date();
+        return myDate.getFullYear() + "年" + myDate.getMonth() + "月" + myDate.getDate() + "日"
+    },
     getJSON: function (url, param, otherParam, func) {
         if (otherParam != undefined && otherParam != null && otherParam != "") {
             param = Util.extend(param, otherParam);
@@ -38,6 +42,22 @@ var Util = {
     postJSON: function (url, param, func, auth) {
         var header = {
             method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                _auth: auth,
+                data: Util.encrypt(JSON.stringify(param))
+            })
+        };
+        fetch(url, header).then((response) => response.json())
+            .then((responseJSON) => {
+                func(responseJSON);
+            });
+    },
+    putJSON: function (url, param, func, auth) {
+        var header = {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json'
             },

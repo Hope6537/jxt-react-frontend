@@ -32,42 +32,54 @@ export default class MealDataComponent extends React.Component {
 
     componentWillMount() {
         this.setState({
+            mealList: [],
             selectable: false,
             showCheckboxes: false,
             mealClassId: null,
         })
     }
 
+    /**
+     * 在这里读取整个Meal列表
+     */
     componentDidMount() {
+        Util.getJSON(Service.host + Service.fetchMeal, {meal: {isDeleted: "0"}}, null, function (resp) {
+            if (resp.success) {
+                this.setState({
+                    mealList: resp.data.result
+                });
+            }
+        }.bind(this))
     }
 
     render() {
+        var mealList = this.state.mealList;
+        let rows = null;
+        var index = 0;
+        if (mealList != undefined) {
+            rows = mealList.map(meal => {
+                var isFirst = false;
+                if (index == 0) {
+                    isFirst = true;
+                }
+                index++;
+                return <MealCard key={meal.id} date={meal.day} data={meal} isFirst={isFirst}/>
+            });
+        }
+
         return (
             <div>
                 <Card style={{marginBottom:"20px"}}>
                     <CardTitle title={"编辑今日餐谱"}/>
                     <CardText>
-                        <SelectField value={this.state.mealClassId} onChange={this.handleChangeMealClass}
-                                     hintText="选择班级">
-                            <MenuItem value={1} primaryText="A班"/>
-                            <MenuItem value={2} primaryText="B班"/>
-                        </SelectField>
-                        <br/>
                         <MealCardEditor type="早餐"/>
                         <MealCardEditor type="午餐"/>
                         <MealCardEditor type="晚餐"/>
                     </CardText>
-                    <CardActions>
-                        <RaisedButton label="应用到当前班级"/>
-                        <RaisedButton label="应用到所有班级" primary={true}/>
-                    </CardActions>
                 </Card>
                 <br/>
                 <div>
-                    <MealCard date="2016年05月18日" isFirst={true}/>
-                    <MealCard date="2016年05月17日"/>
-                    <MealCard date="2016年05月16日"/>
-                    <MealCard date="2016年05月15日"/>
+                    {rows}
                 </div>
             </div>
         )

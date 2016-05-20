@@ -4,7 +4,11 @@
 var Service = {
     host: 'http://localhost:8080',
     getEvent: '/event/get',
-    postEvent: '/event/post'
+    postEvent: '/event/post',
+
+    fetchMeal: '/meal/fetch',
+    postMeal: '/meal/post',
+    putMeal: '/meal/put'
 };
 
 module.exports = Service;

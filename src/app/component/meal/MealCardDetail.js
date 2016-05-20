@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
@@ -35,18 +34,17 @@ export default class MealCardDetail extends React.Component {
     render() {
 
         var mealCardType = this.state.type;
+        var data = this.props.data;
+        data = JSON.parse(data);
 
         return (
             <Card style={cardDetailStyle}>
                 <CardHeader
                     title={mealCardType}
                 />
-                <CardTitle title="Card title" subtitle="Card subtitle"/>
+                <CardTitle title={data.title}/>
                 <CardText>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                    {data.des}
                 </CardText>
                 <CardActions>
                     <FlatButton label="好评"/>
