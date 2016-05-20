@@ -10,10 +10,14 @@ import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import Util from '../../util'
+import Service from '../../service'
+
 import MealCard from '../../component/meal/MealCard'
 import MealCardEditor from '../../component/meal/MealCardEditor'
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 
 export default class MealDataComponent extends React.Component {
 
@@ -32,6 +36,9 @@ export default class MealDataComponent extends React.Component {
             showCheckboxes: false,
             mealClassId: null,
         })
+    }
+
+    componentDidMount() {
     }
 
     render() {
