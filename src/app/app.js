@@ -29,7 +29,7 @@ ReactDOM.render(<Router history={hashHistory}>
         <Route path="meal" component={P_Meal}/>
         <Route path="plan" component={P_Plan}/>
         <Route path="event" component={P_Event}/>
-        <Route path="event/info/:eventId" component={P_Info}/>
+        <Route path="event/info/:eventId/:studentId" component={P_Info}/>
         <Route path="require/info/:requireId" component={P_Info}/>
         <Route path="notice" component={P_Notice}/>
         <Route path="require" component={P_Require}/>

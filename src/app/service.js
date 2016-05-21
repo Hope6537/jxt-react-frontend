@@ -6,6 +6,7 @@ var Service = {
     getEvent: '/event/get',
 
     fetchEvent: '/event/fetch',
+    fetchEventGroupByStudent: '/event/fetch/group/student',
     fetchFullEvent: "/event/fetch/full",
     postEvent: '/event/post',
     putEvent: '/event/put',
@@ -23,7 +24,11 @@ var Service = {
     postPlan: "/plan/post",
     putPlan: "/plan/put",
 
-    fetchClasses: "/classes/fetch"
+    fetchClasses: "/classes/fetch",
+
+    putJoin: "/join/put",
+    postJoin: "/join/post",
+    fetchJoin: "/join/fetch"
 };
 
 module.exports = Service;

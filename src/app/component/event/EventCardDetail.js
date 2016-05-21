@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Util from '../../util'
+import Service from '../../service'
+
 const cardDetailStyle = {
     width: "320px",
     height: "500px",
@@ -23,45 +34,150 @@ export default class EventCardDetail extends React.Component {
         super();
     }
 
+    componentWillMount() {
+        var event = this.props.event;
+        var student = this.props.student;
+        this.setState({
+            open: false,
+            event: event,
+            eventId: event.id,
+            student: student,
+            studentId: student.id,
+
+        })
+    }
+
+    handleOpen() {
+        this.setState({open: true});
+    };
+
+    handleClose() {
+        this.setState({open: false});
+    };
+
+    handlePostJoin(accept) {
+        var data = {
+            postObject: {
+                studentId: this.state.studentId,
+                eventId: this.state.eventId,
+                status: accept ? 1 : 2
+            }
+        };
+        Util.postJSON(Service.host + Service.postJoin, data, function (resp) {
+            this.setState({
+                dialogMsg: decodeURIComponent(resp.returnMsg)
+            });
+            this.handleOpen();
+            this.props.refresh.call(this.props.callObj)
+        }.bind(this), "debug")
+    }
+
+    handleAccept() {
+        this.handlePostJoin(true)
+    }
+
+    handleReject() {
+        this.handlePostJoin(false)
+    }
+
+    handlePutJoin(accept) {
+        var data = {
+            putObject: {
+                id: this.state.event.joinId,
+                status: accept ? 1 : 2
+            }
+        };
+        Util.putJSON(Service.host + Service.putJoin, data, function (resp) {
+            this.setState({
+                dialogMsg: decodeURIComponent(resp.returnMsg)
+            });
+            this.handleOpen();
+            this.props.refresh.call(this.props.callObj)
+        }.bind(this), "debug")
+    }
+
+    handleChangeToReject() {
+        this.handlePutJoin(false);
+    }
+
+    handleChangeToAccept() {
+        this.handlePutJoin(true);
+    }
+
     render() {
+        const actions = [
+            <FlatButton
+                label="关闭"
+                primary={true}
+                onTouchTap={this.handleClose.bind(this)}
+            />,
+        ];
+        var cardType = this.props.type == undefined ? "parent" : tpropshis.props.type;
 
-        var cardType = this.props.type == undefined ? "parent" : this.props.type;
-        var eventId = this.props.event.id;
-        var eventTitle = this.props.event.title;
-        var eventDes = this.props.event.des;
-        var eventClassesInfoList = this.props.event.relationClasses.map(classes => {
-            return classes.name;
-        });
-        console.log(eventClassesInfoList);
-
-        var eventStatus = this.props.event.status;
-
+        var event = this.props.event;
+        var eventId = event.id;
+        var eventTitle = event.title;
+        var eventDes = event.des;
+        if (event.relationClasses != undefined) {
+            var eventClassesInfoList = event.relationClasses.map(classes => {
+                return classes.name;
+            });
+        }
+        //家长
         if (cardType != "teacher") {
+            var student = this.state.student;
+            var studentId = "";
+            var studentName = ""
+            if (student != undefined) {
+                studentId = student.id;
+                studentName = student.name;
+            }
+            var joinAction = [];
+            if (event.joinStatus == 0 || event.joinStatus == undefined) {
+                joinAction = [<FlatButton key={event.id+"a"} label="同意" onTouchTap={this.handleAccept.bind(this)}/>,
+                    <FlatButton key={event.id+"r"} label="拒绝" onTouchTap={this.handleReject.bind(this)}/>]
+            } else if (event.joinStatus == 1) {
+                joinAction = [<FlatButton key={event.id+"a"} label="已同意" primary={true}/>,
+                    <FlatButton key={event.id+"r"} label="变为拒绝" onTouchTap={this.handleChangeToReject.bind(this)}/>]
+            } else if (event.joinStatus == 2) {
+                joinAction = [<FlatButton key={event.id+"a"} label="已拒绝" primary={true}/>,
+                    <FlatButton key={event.id+"r"} label="变为同意" onTouchTap={this.handleChangeToAccept.bind(this)}/>]
+            }
             return (
                 <Card style={cardDetailStyle}>
+                    <Dialog
+                        title="系统消息"
+                        actions={actions}
+                        modal={true}
+                        open={this.state.open}
+                    >
+                        {this.state.dialogMsg}
+                    </Dialog>
                     <CardHeader
                         title={"活动"}
                     />
-                    <CardTitle title={eventTitle} subtitle={"活动班级:"+JSON.stringify(eventClassesInfoList)}/>
+                    <CardTitle title={eventTitle} subtitle={studentName+"的活动"}/>
                     <CardText style={{height:"250px"}}>
                         {eventDes}
                     </CardText>
                     <CardActions>
-                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情" href={"/#/event/info/"+eventId}
+                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情"
+                                      href={"/#/event/info/"+eventId+"/"+studentId}
                                       primary={true}/>
-                        <FlatButton label="同意"/>
-                        <FlatButton label="拒绝"/>
+                        {joinAction}
                     </CardActions>
                 </Card>
             )
-        } else {
+        }
+        //教师
+        else {
             var buttonLabel = cardType == "teacher" ? "编辑" : "编辑";
             return (
                 <Card style={cardDetailStyle}>
                     <CardHeader
                         title={"活动"}
                     />
-                    <CardTitle title={eventTitle} subtitle={"活动班级:\n"+JSON.stringify(eventClassesInfoList)}/>
+                    <CardTitle title={eventTitle} subtitle={JSON.stringify(eventClassesInfoList)}/>
                     <CardText style={{height:"250px"}}>
                         {eventDes}
                     </CardText>
