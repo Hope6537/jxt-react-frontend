@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
+import TimePicker from 'material-ui/TimePicker';
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-
+import RefreshIndicator from 'material-ui/RefreshIndicator';
+import Util from '../../util'
+import Service from '../../service'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const cardDetailStyle = {
     width: "300px",
@@ -19,25 +29,25 @@ const cardDetailStyle = {
  */
 export default class NoticeCard extends React.Component {
 
+    constructor() {
+        super();
+    }
 
-    renderCardHeader(date, classes) {
+    renderCardHeader(date, classes, title) {
         if (classes == "all") {
             classes = "全校通知";
         }
         return <CardHeader
-            title={classes+":通知的标题"}
-            subtitle={date}
+            title={date+":"+title}
+            subtitle={classes}
             actAsExpander={true}
             showExpandableButton={true}
         />
     }
 
-    renderCardText() {
+    renderCardText(des) {
         return <CardText expandable={true}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            {des}
         </CardText>
     }
 
@@ -48,20 +58,22 @@ export default class NoticeCard extends React.Component {
     render() {
 
         var date = this.props.date;
+        var title = this.props.title;
+        var des = this.props.des;
         var classes = this.props.classes == undefined ? "all" : this.props.classes;
         var isFirst = this.props.isFirst == undefined ? false : this.props.isFirst;
         if (isFirst) {
             return (
                 <Card expanded={true}>
-                    {this.renderCardHeader(date, classes)}
-                    {this.renderCardText()}
+                    {this.renderCardHeader(date, classes, title)}
+                    {this.renderCardText(des)}
                 </Card>
             )
         } else {
             return (
                 <Card>
-                    {this.renderCardHeader(date, classes)}
-                    {this.renderCardText()}
+                    {this.renderCardHeader(date, classes, title)}
+                    {this.renderCardText(des)}
                 </Card>
             )
         }

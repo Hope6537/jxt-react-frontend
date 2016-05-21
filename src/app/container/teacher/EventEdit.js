@@ -70,7 +70,6 @@ export default class EventEdit extends React.Component {
 
     fetchClassesList() {
         var query = null;
-
         query = {
             //TODO:教师所属班级集合
         };

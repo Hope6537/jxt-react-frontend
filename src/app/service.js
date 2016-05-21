@@ -28,7 +28,15 @@ var Service = {
 
     putJoin: "/join/put",
     postJoin: "/join/post",
-    fetchJoin: "/join/fetch"
+    fetchJoin: "/join/fetch",
+
+    getNotice: "/notice/get",
+    getNoticeRich: "/notice/get/rich",
+    fetchNotice: '/notice/fetch',
+    fetchNoticeRich: '/notice/fetch/rich',
+    postNotice: '/notice/post',
+    postNoticeRich: '/notice/post/rich',
+    putNotice: '/notice/put'
 };
 
 module.exports = Service;
