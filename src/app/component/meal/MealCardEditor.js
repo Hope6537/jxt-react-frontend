@@ -120,7 +120,7 @@ export default class MealCardEditor extends React.Component {
         var callObj = this.props.callObj;
         var meal = this.handleData();
         var query = {
-            meal: {
+            fetchObject: {
                 day: Util.getNowDate()
             }
         };

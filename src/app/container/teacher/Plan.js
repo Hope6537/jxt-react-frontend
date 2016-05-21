@@ -377,7 +377,9 @@ export default class PlanDataComponent extends React.Component {
                             </Table>
                         </CardText>
                         <CardActions>
-                            <RaisedButton label="测试-生成课表" secondary={true} onTouchTap={this.handleGenerate}/>
+                            <RaisedButton label="测试-生成课表" secondary={true} onTouchTap={this.handleGenerate}
+                                          style={{marginBottom:"10px"}}/>
+                            <br/>
                             <RaisedButton label="应用到当前班级" onTouchTap={this.handleSubmit}/>
                             <RaisedButton label="应用到所有班级" onTouchTap={this.handleSubmitAll} primary={true}/>
                         </CardActions>

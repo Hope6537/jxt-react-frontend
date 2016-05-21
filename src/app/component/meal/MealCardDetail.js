@@ -36,6 +36,12 @@ export default class MealCardDetail extends React.Component {
         var mealCardType = this.state.type;
         var data = this.props.data;
         data = JSON.parse(data);
+        if (data == undefined) {
+            data = {
+                title: "尚未编辑",
+                des: '尚未编辑'
+            }
+        }
 
         return (
             <Card style={cardDetailStyle}>
