@@ -217,7 +217,7 @@ export default class MealCardEditor extends React.Component {
                 </CardText>
                 <CardActions>
                     <RaisedButton label="保存变更" primary={true} onTouchTap={this.handleSubmit.bind(this)}/>
-                    <RaisedButton label="生成餐谱" secondary={true} onTouchTap={this.handleGenerateMeal.bind(this)}/>
+                    <RaisedButton label="测试-生成餐谱" secondary={true} onTouchTap={this.handleGenerateMeal.bind(this)}/>
                 </CardActions>
             </Card>
         )

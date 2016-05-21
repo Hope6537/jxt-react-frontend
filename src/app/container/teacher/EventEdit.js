@@ -283,7 +283,7 @@ export default class EventEdit extends React.Component {
                         >
                             {this.state.dialogMsg}
                         </Dialog>
-                        <RaisedButton label={"生成活动"} onTouchTap={this.generateEvent.bind(this)} primary={true}/>
+                        <RaisedButton label={"测试-生成活动"} onTouchTap={this.generateEvent.bind(this)} secondary={true}/>
                         <br/>
                         <h3>{this.state.eventId == undefined ? "选择活动班级" : "活动关联班级"}</h3>
                         <Table

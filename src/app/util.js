@@ -29,6 +29,10 @@ var Util = {
     //屏幕尺寸
     AES_KEY: "xComicHentai6537",
     AES_IV: "4798145623545678",
+    parseDate: function (unix_timestamp) {
+        var date = new Date(unix_timestamp * 1000);
+        return date.getFullYear() + "年" + date.getMonth() + "月" + date.getDate() + "日 " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+    },
     getNowDate: function () {
         var myDate = new Date();
         return myDate.getFullYear() + "年" + myDate.getMonth() + "月" + myDate.getDate() + "日"

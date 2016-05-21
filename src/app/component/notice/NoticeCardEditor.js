@@ -148,13 +148,6 @@ export default class NoticeCardEditor extends React.Component {
                     </TableRow>)
                 });
             }
-            const actions = [
-                <FlatButton
-                    label="关闭"
-                    primary={true}
-                    onTouchTap={this.handleClose.bind(this)}
-                />,
-            ];
 
             return (
                 <Card>
@@ -180,13 +173,13 @@ export default class NoticeCardEditor extends React.Component {
                         />
                         <Dialog
                             title="系统消息"
-                            actions={actions}
+                            actions={<FlatButton label="关闭" primary={true} onTouchTap={this.handleClose.bind(this)} />}
                             modal={true}
                             open={this.state.open}
                         >
                             {this.state.dialogMsg}
                         </Dialog>
-                        <RaisedButton label={"生成通知"} onTouchTap={this.generateNotice.bind(this)} primary={true}/>
+                        <RaisedButton label={"测试-生成通知"} onTouchTap={this.generateNotice.bind(this)} secondary={true}/>
                         <br/>
                         <h3>{this.state.eventId == undefined ? "选择活动班级" : "活动关联班级"}</h3>
                         <Table

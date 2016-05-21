@@ -36,7 +36,10 @@ var Service = {
     fetchNoticeRich: '/notice/fetch/rich',
     postNotice: '/notice/post',
     postNoticeRich: '/notice/post/rich',
-    putNotice: '/notice/put'
+    putNotice: '/notice/put',
+
+    fetchFeedBack: "/feedback/fetch",
+    postFeedBack: "/feedback/post"
 };
 
 module.exports = Service;
