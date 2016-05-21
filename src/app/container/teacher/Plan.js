@@ -188,54 +188,22 @@ export default class PlanDataComponent extends React.Component {
             classesList = [{id: planClassesId}];
         }
 
-        classesList.map(classes => {
-            var query = {
-                fetchObject: {
-                    classesId: classes.id,
-                    day: Util.getNowDate()
-                }
-            };
-            var sendData = {
-                postObject: {
-                    classesId: classes.id,
-                    day: Util.getNowDate(),
-                    data: JSON.stringify(data)
-                }
-            };
-            var that = this;
-            Util.getJSON(Service.host + Service.fetchPlan, query, undefined, function (resp) {
-                if (resp.success) {
-                    //刚刚创建
-                    if (resp.data.result.length == 0) {
-                        Util.postJSON(Service.host + Service.postPlan, sendData, function (resp) {
-                            that.setState({
-                                dialogMsg: decodeURIComponent(resp.returnMsg)
-                            });
-                            that.fetchPlanList();
-                            that.handleOpen()
-                        }, 'debug')
-                    }
-                    //进行修改
-                    else {
-                        var id = resp.data.result[0].id;
-                        sendData['putObject'] = sendData.postObject;
-                        sendData['putObject']['id'] = id;
-                        Util.putJSON(Service.host + Service.putPlan, sendData, function (resp) {
-                            that.setState({
-                                dialogMsg: decodeURIComponent(resp.returnMsg)
-                            });
-                            that.fetchPlanList();
-                            that.handleOpen();
-                        }, 'debug')
-                    }
-                } else {
-                    this.setState({
-                        dialogMsg: decodeURIComponent(resp.returnMsg)
-                    });
-                    this.handleOpen()
-                }
-            }.bind(this));
-        })
+        var sendData = {
+            postObject: {
+                classesIdList: classesList.map(classes=>classes.id),
+                day: Util.getNowDate(),
+                data: JSON.stringify(data)
+            }
+        };
+        Util.postJSON(Service.host + Service.postPlanRich, sendData, function (resp) {
+            this.setState({
+                dialogMsg: decodeURIComponent(resp.returnMsg)
+            });
+            this.handleOpen();
+            if (resp.success) {
+                this.fetchPlanList();
+            }
+        }.bind(this), 'debug');
 
     }
 

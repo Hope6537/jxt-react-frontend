@@ -22,6 +22,7 @@ var Service = {
 
     fetchPlan: '/plan/fetch',
     postPlan: "/plan/post",
+    postPlanRich: '/plan/post/rich',
     putPlan: "/plan/put",
 
     fetchClasses: "/classes/fetch",
