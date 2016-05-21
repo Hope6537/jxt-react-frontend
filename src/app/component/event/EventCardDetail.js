@@ -40,9 +40,7 @@ export default class EventCardDetail extends React.Component {
         this.setState({
             open: false,
             event: event,
-            eventId: event.id,
             student: student,
-            studentId: student.id,
 
         })
     }
@@ -58,8 +56,8 @@ export default class EventCardDetail extends React.Component {
     handlePostJoin(accept) {
         var data = {
             postObject: {
-                studentId: this.state.studentId,
-                eventId: this.state.eventId,
+                studentId: this.state.student.id,
+                eventId: this.state.event.id,
                 status: accept ? 1 : 2
             }
         };
@@ -112,7 +110,7 @@ export default class EventCardDetail extends React.Component {
                 onTouchTap={this.handleClose.bind(this)}
             />,
         ];
-        var cardType = this.props.type == undefined ? "parent" : tpropshis.props.type;
+        var cardType = this.props.type == undefined ? "parent" : this.props.type;
 
         var event = this.props.event;
         var eventId = event.id;

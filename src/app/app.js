@@ -39,6 +39,7 @@ ReactDOM.render(<Router history={hashHistory}>
         <Route path="meal" component={T_Meal}/>
         <Route path="plan" component={T_Plan}/>
         <Route path="event" component={T_Event}/>
+        <Route path="event/edit" component={T_EventEdit}/>
         <Route path="event/edit/:eventId" component={T_EventEdit}/>
         <Route path="notice" component={T_Notice}/>
         <Route path="require" component={T_Require}/>

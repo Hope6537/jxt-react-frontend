@@ -65,7 +65,7 @@ export default class EventDataComponent extends React.Component {
                 <div>
                     <Card>
                         <CardText style={{textAlign: "right",}}>
-                            <RaisedButton linkButton={true} label="发布新活动" href="/#/teacher/event/edit/-1"
+                            <RaisedButton linkButton={true} label="发布新活动" href="/#/teacher/event/edit"
                                           primary={true}/>
                         </CardText>
                     </Card>

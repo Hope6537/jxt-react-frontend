@@ -235,7 +235,7 @@ export default class EventEdit extends React.Component {
 
 
     render() {
-        var fetchSuccess = (this.props.params.eventId != undefined && this.state.fetchSuccess >= 2) || ( this.state.fetchSuccess >= 1 && this.props.params.eventId != undefined);
+        var fetchSuccess = (this.props.params.eventId != undefined && this.state.fetchSuccess >= 2) || ( this.state.fetchSuccess >= 1 && this.props.params.eventId == undefined);
         if (fetchSuccess) {
             var classesList = this.state.classesList;
             let rows = null;
