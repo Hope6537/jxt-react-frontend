@@ -1,6 +1,6 @@
 var CryptoJS = require("crypto-js");
 var Dimensions = require('react-dimensions');
-var fetch = require('whatwg-fetch')
+import 'whatwg-fetch'
 //example
 
 /* var param = {
