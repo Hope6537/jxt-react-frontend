@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
+import RaisedButton from 'material-ui/RaisedButton';
 const cardDetailStyle = {
     width: "300px",
     marginTop: "20px",
@@ -32,7 +32,6 @@ export default class MealCardDetail extends React.Component {
     }
 
     render() {
-
         var mealCardType = this.state.type;
         var data = this.props.data;
         data = JSON.parse(data);
@@ -41,6 +40,16 @@ export default class MealCardDetail extends React.Component {
                 title: "尚未编辑",
                 des: '尚未编辑'
             }
+        }
+
+        var actions = (<CardActions>
+            <RaisedButton primary={true} label="好评"/>
+            <RaisedButton secondary={true} label="差评"/>
+        </CardActions>);
+
+
+        if (this.props.role == "teacher") {
+            actions = ""
         }
 
         return (
@@ -52,10 +61,7 @@ export default class MealCardDetail extends React.Component {
                 <CardText>
                     {data.des}
                 </CardText>
-                <CardActions>
-                    <FlatButton label="好评"/>
-                    <FlatButton label="差评"/>
-                </CardActions>
+                {actions}
             </Card>
         )
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-
+import RaisedButton from 'material-ui/RaisedButton';
 import MealCardDetail from './MealCardDetail'
 
 /**
@@ -24,9 +24,9 @@ export default class MealCard extends React.Component {
     renderCardText() {
         var meal = this.props.data;
         return (<CardText expandable={true}>
-            <MealCardDetail data={meal.breakfast} type="早餐"/>
-            <MealCardDetail data={meal.lunch} type="午餐"/>
-            <MealCardDetail data={meal.dinner} type="晚餐"/>
+            <MealCardDetail role={this.props.role} data={meal.breakfast} type="早餐"/>
+            <MealCardDetail role={this.props.role} data={meal.lunch} type="午餐"/>
+            <MealCardDetail role={this.props.role} data={meal.dinner} type="晚餐"/>
         </CardText>);
     }
 

@@ -84,7 +84,7 @@ export default class MealDataComponent extends React.Component {
                         isFirst = true;
                     }
                     index++;
-                    return <MealCard key={meal.id} date={meal.day} data={meal} isFirst={isFirst}/>
+                    return <MealCard role={"teacher"} key={meal.id} date={meal.day} data={meal} isFirst={isFirst}/>
                 });
             }
 
