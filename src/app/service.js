@@ -46,7 +46,7 @@ var Service = {
 
     fetchRequire: "/require/fetch",
     fetchRequireRich: "/require/fetch/rich",
-    fetchRequireRichByTeacherId: 'require/fetch/rich/teacher',
+    fetchRequireRichByTeacherId: '/require/fetch/rich/teacher',
     getRequire: '/require/get',
     putRequire: '/require/put',
     postRequire: '/require/post',
