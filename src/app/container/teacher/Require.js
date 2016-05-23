@@ -33,8 +33,6 @@ export default class RequireDataComponent extends React.Component {
 
     constructor() {
         super();
-        this.handleChangeRequireType = this.handleChangeRequireType.bind(this);
-        this.handleChangeTargetTeacherId = this.handleChangeTargetTeacherId.bind(this);
         this.handleRefuseOpen = this.handleRefuseOpen.bind(this);
         this.handleDetailOpen = this.handleDetailOpen.bind(this);
         this.handleRefuseClose = this.handleRefuseClose.bind(this);
@@ -52,22 +50,6 @@ export default class RequireDataComponent extends React.Component {
             requireType: null,
             targetTeacherId: null,
         })
-    }
-
-    handleChangeRequireType(event, index, value) {
-        this.setState({requireType: value});
-    }
-
-    handleChangeTargetTeacherId(event, index, value) {
-        this.setState({targetTeacherId: value});
-    }
-
-    renderDate() {
-        if (this.state.requireType == 1) {
-            return (<br/>);
-        } else {
-            return (<DatePicker hintText="选择日期"/>);
-        }
     }
 
     handleDetailOpen() {
@@ -138,7 +120,7 @@ export default class RequireDataComponent extends React.Component {
                             adjustForCheckbox={this.state.showCheckboxes}
                         >
                             <TableRow>
-                                <TableHeaderColumn tooltip="特别长的标题题题题题题题题题题题题题">需求标题</TableHeaderColumn>
+                                <TableHeaderColumn>需求标题</TableHeaderColumn>
                                 <TableHeaderColumn>需求内容</TableHeaderColumn>
                                 <TableHeaderColumn>发起家长</TableHeaderColumn>
                                 <TableHeaderColumn>状态</TableHeaderColumn>
@@ -150,16 +132,17 @@ export default class RequireDataComponent extends React.Component {
                             displayRowCheckbox={this.state.showCheckboxes}>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><FlatButton style={styles.leftButton} label="详情"
-                                                            onTouchTap={this.handleDetailOpen}
+                                <TableRowColumn tooltip="特别长的标题题题题题题题题题题题题题"><FlatButton style={styles.leftButton}
+                                                                                         label="详情"
+                                                                                         onTouchTap={this.handleDetailOpen}
                                 /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>
                             </TableRow>
                             <TableRow>
                                 <TableRowColumn>标题</TableRowColumn>
-                                <TableRowColumn><FlatButton style={styles.leftButton}
-                                                            label="详情" onTouchTap={this.handleDetailOpen}
+                                <TableRowColumn tooltip="123"><FlatButton style={styles.leftButton}
+                                                                          label="详情" onTouchTap={this.handleDetailOpen}
                                 /></TableRowColumn>
                                 <TableRowColumn>家长</TableRowColumn>
                                 <TableRowColumn>待跟进</TableRowColumn>

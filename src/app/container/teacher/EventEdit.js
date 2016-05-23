@@ -245,13 +245,6 @@ export default class EventEdit extends React.Component {
                     </TableRow>)
                 });
             }
-            const actions = [
-                <FlatButton
-                    label="关闭"
-                    primary={true}
-                    onTouchTap={this.handleClose.bind(this)}
-                />,
-            ];
 
             return (
                 <Card>
@@ -277,7 +270,7 @@ export default class EventEdit extends React.Component {
                         />
                         <Dialog
                             title="系统消息"
-                            actions={actions}
+                            actions={<FlatButton label="关闭" primary={true} onTouchTap={this.handleClose.bind(this)} />}
                             modal={true}
                             open={this.state.open}
                         >

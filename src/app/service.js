@@ -3,8 +3,10 @@
  */
 var Service = {
     host: 'http://localhost:8080',
-    getEvent: '/event/get',
 
+    fetchStudent: "/student/fetch",
+
+    getEvent: '/event/get',
     fetchEvent: '/event/fetch',
     fetchEventGroupByStudent: '/event/fetch/group/student',
     fetchFullEvent: "/event/fetch/full",
@@ -40,7 +42,13 @@ var Service = {
     putNotice: '/notice/put',
 
     fetchFeedBack: "/feedback/fetch",
-    postFeedBack: "/feedback/post"
+    postFeedBack: "/feedback/post",
+
+    fetchRequire: "/require/fetch",
+    getRequire: '/require/get',
+    putRequire: '/require/put',
+    postRequire: '/require/post',
+    deleteRequire: '/require/delete'
 };
 
 module.exports = Service;

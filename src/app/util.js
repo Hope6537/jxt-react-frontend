@@ -29,9 +29,23 @@ var Util = {
     //屏幕尺寸
     AES_KEY: "xComicHentai6537",
     AES_IV: "4798145623545678",
-    parseDate: function (unix_timestamp) {
-        var date = new Date(unix_timestamp * 1000);
-        return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日 " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+    parseDate: function (unix_timestamp, isFull) {
+        if (!isFull) {
+            unix_timestamp = unix_timestamp * 1000
+        }
+        var date = new Date(unix_timestamp);
+        return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
+    },
+    parseTime: function (unix_timestamp, isFull) {
+        if (!isFull) {
+            unix_timestamp = unix_timestamp * 1000
+        }
+        var date = new Date(unix_timestamp);
+        var minutes = date.getMinutes();
+        minutes = minutes > 10 ? minutes : "0" + minutes;
+        var hours = date.getHours();
+        hours = hours > 10 ? hours : "0" + hours;
+        return hours + ":" + minutes;
     },
     getNowDate: function () {
         var myDate = new Date();
@@ -73,6 +87,22 @@ var Util = {
     putJSON: function (url, param, func, auth) {
         var header = {
             method: 'PUT',
+            headers: {
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                _auth: auth,
+                data: Util.encrypt(JSON.stringify(param))
+            })
+        };
+        fetch(url, header).then((response) => response.json())
+            .then((responseJSON) => {
+                func(responseJSON);
+            });
+    },
+    deleteJSON: function (url, param, func, auth) {
+        var header = {
+            method: 'DELETE',
             headers: {
                 'Accept': 'application/json'
             },
