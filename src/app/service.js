@@ -45,6 +45,8 @@ var Service = {
     postFeedBack: "/feedback/post",
 
     fetchRequire: "/require/fetch",
+    fetchRequireRich: "/require/fetch/rich",
+    fetchRequireRichByTeacherId: 'require/fetch/rich/teacher',
     getRequire: '/require/get',
     putRequire: '/require/put',
     postRequire: '/require/post',

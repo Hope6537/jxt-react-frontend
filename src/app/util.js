@@ -42,14 +42,24 @@ var Util = {
         }
         var date = new Date(unix_timestamp);
         var minutes = date.getMinutes();
-        minutes = minutes > 10 ? minutes : "0" + minutes;
+        minutes = minutes >= 10 ? minutes : "0" + minutes;
         var hours = date.getHours();
-        hours = hours > 10 ? hours : "0" + hours;
+        hours = hours >= 10 ? hours : "0" + hours;
         return hours + ":" + minutes;
     },
     getNowDate: function () {
         var myDate = new Date();
         return myDate.getFullYear() + "年" + (myDate.getMonth() + 1) + "月" + myDate.getDate() + "日"
+    },
+    getNowTime: function () {
+        var date = new Date();
+        var minutes = date.getMinutes();
+        minutes = minutes >= 10 ? minutes : "0" + minutes;
+        var hours = date.getHours();
+        hours = hours >= 10 ? hours : "0" + hours;
+        var seconds = date.getSeconds();
+        seconds = seconds >= 10 ? seconds : "0" + seconds;
+        return hours + ":" + minutes + ":" + seconds;
     },
     getJSON: function (url, param, otherParam, func) {
         if (otherParam != undefined && otherParam != null && otherParam != "") {

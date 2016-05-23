@@ -68,7 +68,7 @@ export default class RequireDataComponent extends React.Component {
         if (this.state.parentId != undefined) {
             query.fetchObject['parentId'] = this.state.parentId
         }
-        Util.getJSON(Service.host + Service.fetchRequire, query, undefined, function (resp) {
+        Util.getJSON(Service.host + Service.fetchRequireRich, query, undefined, function (resp) {
             if (resp.success) {
                 this.setState({
                     fetchSuccess: this.state.fetchSuccess + 1,
@@ -141,9 +141,9 @@ export default class RequireDataComponent extends React.Component {
     generateRequire() {
         var date = new Date();
         var data = {
-            title: "需求标题" + Util.getNowDate(),
-            des: "需求描述" + Util.getNowDate(),
-            type: 0,
+            title: "需求标题" + Util.getNowTime(),
+            des: "需求描述" + Util.getNowTime(),
+            type: 1,
             studentId: 74001,
             timeObject: date,
             dateObject: date,
