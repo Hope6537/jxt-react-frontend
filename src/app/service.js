@@ -4,6 +4,9 @@
 var Service = {
     host: 'http://ding.hope6537.com:8080',
 
+    teacherLogin:'/teacher/login',
+    parentLogin:'/parent/login',
+
     fetchStudent: "/student/fetch",
 
     getEvent: '/event/get',

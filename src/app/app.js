@@ -12,6 +12,7 @@ import P_Notice from './container/parent/Notice'
 import P_Require from './container/parent/Require'
 import P_Feedback from './container/parent/Feedback'
 import P_Info from './container/parent/Info'
+import Login from './container/Login'
 
 import Teacher from './container/Teacher'
 
@@ -34,6 +35,7 @@ ReactDOM.render(<Router history={hashHistory}>
         <Route path="notice" component={P_Notice}/>
         <Route path="require" component={P_Require}/>
         <Route path="feedback" component={P_Feedback}/>
+        <Route path="login" component={Login}/>
     </Route>
     <Route path="/teacher" component={Teacher}>
         <Route path="meal" component={T_Meal}/>
