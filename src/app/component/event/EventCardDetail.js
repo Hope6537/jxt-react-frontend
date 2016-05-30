@@ -15,7 +15,7 @@ import Util from '../../util'
 import Service from '../../service'
 
 const cardDetailStyle = {
-    width: "320px",
+    width: "310px",
     height: "500px",
     marginTop: "20px",
     marginBottom: "20px",
@@ -132,14 +132,14 @@ export default class EventCardDetail extends React.Component {
             }
             var joinAction = [];
             if (event.joinStatus == 0 || event.joinStatus == undefined) {
-                joinAction = [<FlatButton key={event.id+"a"} label="同意" onTouchTap={this.handleAccept.bind(this)}/>,
-                    <FlatButton key={event.id+"r"} label="拒绝" onTouchTap={this.handleReject.bind(this)}/>]
+                joinAction = [<FlatButton style={{marginLeft:"0px"}} key={event.id+"a"} label="同意" onTouchTap={this.handleAccept.bind(this)}/>,
+                    <FlatButton style={{marginLeft:"0px"}}  key={event.id+"r"} label="拒绝" onTouchTap={this.handleReject.bind(this)}/>]
             } else if (event.joinStatus == 1) {
-                joinAction = [<FlatButton key={event.id+"a"} label="已同意" primary={true}/>,
-                    <FlatButton key={event.id+"r"} label="变为拒绝" onTouchTap={this.handleChangeToReject.bind(this)}/>]
+                joinAction = [<FlatButton style={{marginLeft:"0px"}} key={event.id+"a"} label="已同意" primary={true}/>,
+                    <FlatButton style={{marginLeft:"0px"}}  key={event.id+"r"} label="变为拒绝" onTouchTap={this.handleChangeToReject.bind(this)}/>]
             } else if (event.joinStatus == 2) {
-                joinAction = [<FlatButton key={event.id+"a"} label="已拒绝" primary={true}/>,
-                    <FlatButton key={event.id+"r"} label="变为同意" onTouchTap={this.handleChangeToAccept.bind(this)}/>]
+                joinAction = [<FlatButton  style={{marginLeft:"0px"}} key={event.id+"a"} label="已拒绝" primary={true}/>,
+                    <FlatButton style={{marginLeft:"0px"}} key={event.id+"r"} label="变为同意" onTouchTap={this.handleChangeToAccept.bind(this)}/>]
             }
             return (
                 <Card style={cardDetailStyle}>
@@ -159,6 +159,7 @@ export default class EventCardDetail extends React.Component {
                         {eventDes}
                     </CardText>
                     <CardActions>
+
                         <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label="详情"
                                       href={"/#/event/info/"+eventId+"/"+studentId}
                                       primary={true}/>
@@ -169,18 +170,21 @@ export default class EventCardDetail extends React.Component {
         }
         //教师
         else {
-            var buttonLabel = cardType == "teacher" ? "编辑" : "编辑";
             return (
                 <Card style={cardDetailStyle}>
                     <CardHeader
                         title={"活动"}
                     />
-                    <CardTitle title={eventTitle} subtitle={JSON.stringify(eventClassesInfoList)}/>
+                    <CardTitle title={eventTitle}/>
                     <CardText style={{height:"250px"}}>
+                        {"活动所属班级:"}
+                        <br/>
+                        {JSON.stringify(eventClassesInfoList)}
+                        <hr/>
                         {eventDes}
                     </CardText>
                     <CardActions>
-                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label={buttonLabel}
+                        <RaisedButton style={{marginLeft:"0px"}} linkButton={true} label={"编辑"}
                                       href={"/#/teacher/event/edit/"+eventId}
                                       primary={true}/>
                     </CardActions>

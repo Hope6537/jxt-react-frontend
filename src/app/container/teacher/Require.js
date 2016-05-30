@@ -225,7 +225,7 @@ export default class RequireDataComponent extends React.Component {
                 3: "已拒绝",
             };
             var index = 0;
-            let requireRow = this.state.requireList.map(r => {
+            let requireRow = this.state.requireList.reverse().map(r => {
                 return (<TableRow key={r.id}>
                     <TableRowColumn>{r.title}</TableRowColumn>
                     <TableRowColumn><FlatButton name={index++} style={{textAlign:"left"}}

@@ -155,7 +155,7 @@ export default class AppHeaderBar extends React.Component {
     }
 
     renderRight() {
-        return (<div className="body"><FlatButton style={{color:"#FFFFFF",marginTop:"6px"}} linkButton={true} href='/#/login' label="登录"/></div>)
+        return (<div className="body"><FlatButton style={{color:"#FFFFFF",marginTop:"6px"}} linkButton={true} href='/#/login' label="赵鹏"/></div>)
     }
 
     render() {
